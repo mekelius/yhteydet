@@ -15,14 +15,17 @@ div {
     position: relative;
     grid-column: 3;
     z-index: 2;
-    background-color: blue;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding-top: 16px;
 
     h2 {
+        background-color: bisque;
+        color: black;
         position: absolute;
+        border-radius: 10px;
+        padding: 16px;
     }
 }
 </style>
