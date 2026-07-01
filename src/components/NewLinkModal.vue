@@ -16,7 +16,7 @@ defineExpose({ show })
 <template>
     <dialog ref="dialog">
         <span class="instructions">
-            Voit jakaa tehtävän lähettämällä tämän linkin:
+            Tässä linkki pulmaasi:
         </span>
         <br>
         <a :href="link">{{ link }}</a> <br>
