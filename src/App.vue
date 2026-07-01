@@ -4,26 +4,44 @@ import { ref } from 'vue';
 import Puzzle from './components/Puzzle.vue';
 import PuzzleMaker from './components/PuzzleMaker.vue';
 
-const currentView = ref<'puzzle' | 'puzzle-maker'>('puzzle-maker')
+const puzzleParam = window.location.search.slice(8)
 
-const puzzle = [
-    {
-        category: 'Elukat',
-        cards: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
-    },
-    {
-        category: 'Juomat',
-        cards: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
-    },
-    {
-        category: 'Ulokkeet',
-        cards: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
-    },
-    {
-        category: 'Söpöt',
-        cards: ['Miu', 'Mau', 'Jonna', 'Nasti'],
-    },
-]
+function decodeAndValidate(puzzleParam: string) {
+    try {
+        const puzzle = JSON.parse(atob(puzzleParam))
+
+        // validation here
+     
+        console.log(puzzle)
+        return puzzle
+    } catch (e) {
+        window.alert(e);
+    }
+}
+
+console.log(puzzleParam)
+
+const puzzle = puzzleParam ? decodeAndValidate(puzzleParam) : null
+const currentView = ref<'puzzle' | 'puzzle-maker'>(puzzle ? 'puzzle' : 'puzzle-maker')
+
+// const puzzle = [
+//     {
+//         title: 'Elukat',
+//         cards: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
+//     },
+//     {
+//         title: 'Juomat',
+//         cards: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
+//     },
+//     {
+//         title: 'Ulokkeet',
+//         cards: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
+//     },
+//     {
+//         title: 'Söpöt',
+//         cards: ['Miu', 'Mau', 'Jonna', 'Nasti'],
+//     },
+// ]
 </script>
 
 <template>

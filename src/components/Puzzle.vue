@@ -23,7 +23,7 @@ type Card = {
     color: number,
 }
 
-type Category = { category: string, cards: string[] }
+type Category = { title: string, cards: string[] }
 type Puzzle = Category[]
 
 const { puzzle } = defineProps<{ puzzle: Puzzle }>()
@@ -36,7 +36,7 @@ function initCards(puzzle: Puzzle): Card[] {
         for (const cardText of category.cards) {
             cards.push({
                 id,
-                category: category.category,
+                category: category.title,
                 cardText,
                 selected: false,
                 solved: false,

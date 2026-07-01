@@ -1,3 +1,4 @@
-- sharing
+- json validation
+- navigating back to puzzlemaker
 - lives
 - deployment
