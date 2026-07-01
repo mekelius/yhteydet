@@ -3,6 +3,7 @@ import { computed, onMounted, reactive, useTemplateRef } from 'vue';
 import { wrapGrid } from 'animate-css-grid';
 import Card from './Card.vue';
 import Toast from './Toast.vue';
+import RowHeader from './RowHeader.vue';
 
 const puzzle = [
     {
@@ -107,9 +108,8 @@ onMounted(() => {
 <template>
     <div class="app">
         <div ref="card-grid" class="card-grid">
-            <div v-for="category, row in solvedRows" class="row-header" :style="{ gridRow: row + 1 }">
-                <h2>{{ category }}</h2>
-            </div>
+            <RowHeader v-for="category, row in solvedRows" :category :style="{ gridRow: row + 1 }" />
+
             <Card v-for="card in cards" :card @click="() => selectOption(card.id)"
                 :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" />
         </div>
@@ -136,21 +136,6 @@ onMounted(() => {
     grid-template-rows: 1fr 1fr 1fr 1fr;
     /* gap: 20px; */
     width: 100%;
-}
-
-.row-header {
-    position: relative;
-    grid-column: 3;
-    z-index: 2;
-    background-color: blue;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-top: 16px;
-
-    h2 {
-        position: absolute;
-    }
 }
 
 .controls {
