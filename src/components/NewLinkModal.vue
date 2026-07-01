@@ -15,13 +15,19 @@ defineExpose({ show })
 
 <template>
     <dialog ref="dialog">
-        <span class="instructions">
-            Tässä linkki pulmaasi:
-        </span>
-        <br>
-        <a :href="link">{{ link }}</a> <br>
+        <div class="wrapper">
 
+            <p class="instructions">
+                Tässä linkki pulmaasi:
+            </p>
+        
+            <a :href="link">{{ link }}</a> 
+            
+        <p>
+            Pidä linkki tallessa. Jos hukkaat sen, joudut syöttämään pulmasi uudelleen.
+        </p>
         <button @click="dialog!.close()">Sulje</button>
+    </div>
     </dialog>
 </template>
 
@@ -31,11 +37,20 @@ dialog {
     padding: 32px;
 }
 
+.wrapper {
+    overflow-wrap: anywhere;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
 .instructions {
     font-size: large;
 }
 
 a {
+    max-width: 100%;
     word-wrap: break-word;
 }
 
@@ -46,5 +61,6 @@ button {
     margin-top: 16px;
     border-radius: 10px;
     border: none;
+    max-width: max-content;
 }
 </style>
