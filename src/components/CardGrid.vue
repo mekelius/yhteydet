@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, onMounted, reactive, ref, useTemplateRef } from 'vue';
+import { wrapGrid } from 'animate-css-grid';
 import Card from './Card.vue';
 
 const puzzle = [
@@ -26,22 +27,22 @@ let id = 0;
 
 for (const category of puzzle) {
     for (const option of category.options) {
-        options.push({id, category: category.category, option, selected: false, solved: false})
+        options.push({ id, category: category.category, option, selected: false, solved: false })
         id++;
     }
 }
 
-const randomized = options.map((option) => ({pos: Math.random(), option}))
-randomized.sort(({pos: pos1}, {pos:pos2}) => pos2 - pos1)
+const randomized = options.map((option) => ({ pos: Math.random(), option }))
+randomized.sort(({ pos: pos1 }, { pos: pos2 }) => pos2 - pos1)
 
-const cards = reactive(randomized.map(({option}) => option));
+const cards = reactive(randomized.map(({ option }, index) => ({ ...option, row: Math.floor(index / 4) + 1, col: index % 4 + 1 })));
 
-const numberOfSelected = computed(()=>cards.filter((v)=>v.selected).length);
+const numberOfSelected = computed(() => cards.filter((v) => v.selected).length);
 
 function selectOption(id: number) {
     const card = cards.find((card) => card.id === id)!;
     if (card.selected)
-        card.selected = false;
+        return card.selected = false;
 
     if (numberOfSelected.value >= 4)
         return;
@@ -49,8 +50,21 @@ function selectOption(id: number) {
     card.selected = true
 }
 
-function declareWin() {
-    window.alert("VOITIT PELIN");
+const nextRow = ref(1)
+
+function correctGuess(category: string) {
+    const solved = cards.filter((card) => card.category === category)
+    solved.forEach(card => { card.solved = true; card.selected = false })
+
+    solved.forEach((card, index) => {
+        if (card.row === nextRow.value && card.col === index + 1)
+            return
+
+        const swappee = cards.find(({row, col}) => row === nextRow.value && col === index + 1)!
+        swapCards(card.id, swappee.id)
+    })
+
+    nextRow.value++;
 }
 
 function declareFail() {
@@ -58,31 +72,77 @@ function declareFail() {
 }
 
 function makeGuess() {
-    const selected = cards.filter(({selected}) => selected);
+    const selected = cards.filter(({ selected }) => selected);
 
-    if (selected.filter(({category}) => category === selected[0].category).length !== 4)
-        return declareFail()    
+    if (selected.filter(({ category }) => category === selected[0].category).length !== 4)
+        return declareFail()
 
-    declareWin()
+    correctGuess(selected[0].category)
 }
+
+function swapCards(card1ID: number, card2ID:number) {
+    const card1 = cards.find((card) => card.id === card1ID)!
+    const card2 = cards.find((card) => card.id === card2ID)!
+
+    const row1 = card1.row
+    const col1 = card1.col
+    
+    card1.row = card2.row
+    card1.col = card2.col
+    card2.row = row1
+    card2.col = col1
+}
+
+const cardGrid = useTemplateRef('card-grid')
+
+onMounted(() => {
+    wrapGrid(cardGrid.value, {easing: 'backOut', stagger: 10, duration: 400})
+})
 
 </script>
 
 <template>
-    kortit
-    <ul>
-        <Card v-for="card in cards" :card @click="() => selectOption(card.id)"/>
-    </ul>
-
-    <button @click="makeGuess" :disabled="numberOfSelected!=4">Arvaa</button>
+    <div class="app">
+        <div ref="card-grid" class="card-grid">
+            <Card v-for="card in cards" :card @click="() => selectOption(card.id)"
+                :style="{ gridRow: card.row, gridCol: card.col }" />
+        </div>
+        <div class="controls">
+            <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4">Arvaa</button>
+        </div>
+    </div>
 </template>
 
 <style scoped>
-ul {
+.app {
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    grid-template-columns: 100%;
+    height: 100vh;
+}
+
+.card-grid {
+    /* max-width: 100%;
+    min-width: fit-content; */
+
+    /* max-height: 80%; */
+    /* min-height: fit-content; */
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.controls {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 200px;
+    align-items: center;
+    justify-content: space-around;
+
+    .guess {
+        flex-grow: 2;
+        padding: 20px;
+    }
 }
 </style>

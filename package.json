@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate-css-grid": "^1.5.1",
     "vue": "^3.5.39"
   },
   "devDependencies": {
