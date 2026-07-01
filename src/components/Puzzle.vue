@@ -5,32 +5,26 @@ import Card from './Card.vue';
 import Toast from './Toast.vue';
 import RowHeader from './RowHeader.vue';
 
-const puzzle = [
-    {
-        category: 'Elukat',
-        cards: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
-    },
-    {
-        category: 'Juomat',
-        cards: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
-    },
-    {
-        category: 'Ulokkeet',
-        cards: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
-    },
-    {
-        category: 'Söpöt',
-        cards: ['Miu', 'Mau', 'Jonna', 'Nasti'],
-    },
-]
+type Puzzle = { category: string, cards: string[] }[]
+type Card = {
+    id: number,
+    cardText: string, 
+    category: string,
+    selected: boolean,
+    solved: boolean, 
+    row: number, 
+    col: number
+}
 
-function initCards(puzzle: { category: string, cards: string[] }[]) {
+const { puzzle } = defineProps<{ puzzle: Puzzle }>()
+
+function initCards(puzzle: Puzzle): Card[] {
     const cards = []
     let id = 0;
 
     for (const category of puzzle) {
         for (const cardText of category.cards) {
-            cards.push({ id, category: category.category, card: cardText, selected: false, solved: false })
+            cards.push({ id, category: category.category, cardText, selected: false, solved: false })
             id++;
         }
     }
@@ -41,12 +35,12 @@ function initCards(puzzle: { category: string, cards: string[] }[]) {
     return randomized.map(({ card }, index) => ({ ...card, row: Math.floor(index / 4) + 1, col: index % 4 + 1 }))
 }
 
-const cards = reactive(initCards(puzzle));
+const cards = computed(() => initCards(puzzle));
 
-const numberOfSelected = computed(() => cards.filter((v) => v.selected).length);
+const numberOfSelected = computed(() => cards.value.filter((v) => v.selected).length);
 
 function selectOption(id: number) {
-    const card = cards.find((card) => card.id === id)!;
+    const card = cards.value.find((card) => card.id === id)!;
     if (card.selected)
         return card.selected = false;
 
@@ -61,14 +55,14 @@ const solvedRows = reactive<string[]>([])
 function correctGuess(category: string) {
     solvedRows.push(category)
 
-    const solved = cards.filter((card) => card.category === category)
+    const solved = cards.value.filter((card) => card.category === category)
     solved.forEach(card => { card.solved = true; card.selected = false })
 
     solved.forEach((card, index) => {
         if (card.row === solvedRows.length && card.col === index + 1)
             return
 
-        const swappee = cards.find(({ row, col }) => row === solvedRows.length && col === index + 1)!
+        const swappee = cards.value.find(({ row, col }) => row === solvedRows.length && col === index + 1)!
         swapCards(card.id, swappee.id)
     })
 }
@@ -80,7 +74,7 @@ function declareFail() {
 }
 
 function makeGuess() {
-    const selected = cards.filter(({ selected }) => selected);
+    const selected = cards.value.filter(({ selected }) => selected);
 
     if (selected.filter(({ category }) => category === selected[0].category).length !== 4)
         return declareFail()
@@ -89,8 +83,8 @@ function makeGuess() {
 }
 
 function swapCards(card1ID: number, card2ID: number) {
-    const card1 = cards.find((card) => card.id === card1ID)!
-    const card2 = cards.find((card) => card.id === card2ID)!
+    const card1 = cards.value.find((card) => card.id === card1ID)!
+    const card2 = cards.value.find((card) => card.id === card2ID)!
 
     const row1 = card1.row
     const col1 = card1.col
