@@ -33,7 +33,10 @@ const puzzle = [
 </template>
 
 <style>
+@import "./colors.css";
+
 * {
     box-sizing: border-box;
 }
+
 </style>

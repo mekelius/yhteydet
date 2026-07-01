@@ -21,8 +21,9 @@ div {
     padding-top: 16px;
 
     h2 {
-        background-color: bisque;
+        background-color: white;
         color: black;
+        border: 1px solid black;
         position: absolute;
         border-radius: 10px;
         padding: 16px;

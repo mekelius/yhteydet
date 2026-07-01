@@ -12,34 +12,49 @@ onMounted(() => {
     wrapGrid(cardGrid.value!, { easing: 'backOut', stagger: 10, duration: 400 })
 })
 
-type Puzzle = { category: string, cards: string[] }[]
 type Card = {
     id: number,
-    cardText: string, 
+    cardText: string,
     category: string,
     selected: boolean,
-    solved: boolean, 
-    row: number, 
-    col: number
+    solved: boolean,
+    row: number,
+    col: number,
+    color: number,
 }
+
+type Category = { category: string, cards: string[] }
+type Puzzle = Category[]
 
 const { puzzle } = defineProps<{ puzzle: Puzzle }>()
 
 function initCards(puzzle: Puzzle): Card[] {
     const cards = []
     let id = 0;
-
+    let color = 0;
     for (const category of puzzle) {
         for (const cardText of category.cards) {
-            cards.push({ id, category: category.category, cardText, selected: false, solved: false })
+            cards.push({
+                id,
+                category: category.category,
+                cardText,
+                selected: false,
+                solved: false,
+                color,
+            })
             id++;
         }
+        color++;
     }
 
     const randomized = cards.map((card) => ({ pos: Math.random(), card }))
     randomized.sort(({ pos: pos1 }, { pos: pos2 }) => pos2 - pos1)
 
-    return randomized.map(({ card }, index) => ({ ...card, row: Math.floor(index / 4) + 1, col: index % 4 + 1 }))
+    return randomized.map(({ card }, index) => ({
+        ...card,
+        row: Math.floor(index / 4) + 1,
+        col: index % 4 + 1
+    }))
 }
 
 const cards = reactive(initCards(puzzle));
@@ -85,13 +100,13 @@ function makeGuess() {
     const selected = cards.filter(({ selected }) => selected);
 
     const matchFirst = selected.filter(({ category }) => category === selected[0].category).length;
-    if (matchFirst === 4) 
+    if (matchFirst === 4)
         return correctGuess(selected[0].category)
-    
+
     if (matchFirst === 3)
         return oneAway()
 
-    if (matchFirst === 1 && !selected.slice(2).find(({category}) => category !== selected[1].category)) {
+    if (matchFirst === 1 && !selected.slice(2).find(({ category }) => category !== selected[1].category)) {
         return oneAway()
     }
 

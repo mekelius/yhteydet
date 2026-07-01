@@ -7,7 +7,7 @@ const cardText = ref(card.cardText)
 </script>
 
 <template>
-    <button :class="{ selected: card.selected, solved: card.solved }" :disabled="card.solved">
+    <button :class="[card.selected ? 'selected' : '', card.solved ? `color${card.color + 1}` : '']" :disabled="card.solved">
         {{ cardText }}
     </button>
 </template>
@@ -18,14 +18,19 @@ button {
     transition-property: grid-row, grid-col;
     transition-duration: 2s;
     margin: 1vw;
+    font-weight: 700;
+    font-size: large;
+    
+    @media screen and (max-width: 720px) {
+        font-size: medium;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: x-small;
+    }
 }
 
 button.selected {
     background-color: burlywood;
-}
-
-button.solved {
-    background-color: red;
-    color: black;
 }
 </style>
