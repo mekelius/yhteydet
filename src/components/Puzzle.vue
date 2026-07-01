@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, useTemplateRef } from 'vue';
+import { computed, onMounted, reactive, ref, useTemplateRef } from 'vue';
 import { wrapGrid } from 'animate-css-grid';
 import Card from './Card.vue';
 import Toast from './Toast.vue';
 import RowHeader from './RowHeader.vue';
 import PuzzleMakerConfirm from './PuzzleMakerConfirm.vue';
+import Lives from './Lives.vue';
+import LostGameModal from './LostGameModal.vue';
 
 const toast = useTemplateRef('toast')
 const cardGrid = useTemplateRef('card-grid')
 const puzzleMakerConfirm = useTemplateRef('puzzle-maker-confirm')
+const lostGameModal = useTemplateRef('lost-game-modal')
+
+const lives = ref(4)
 
 onMounted(() => {
     wrapGrid(cardGrid.value!, { easing: 'backOut', stagger: 10, duration: 400 })
@@ -92,10 +97,16 @@ function correctGuess(category: string) {
 
 function declareFail() {
     toast.value!.showMessage('Väärin meni')
+    lives.value--
+    if (lives.value <= 0)
+        lostGameModal.value!.show()
 }
 
 function oneAway() {
     toast.value!.showMessage('Yksi on väärin')
+    lives.value--
+    if (lives.value <= 0)
+        lostGameModal.value!.show()
 }
 
 function makeGuess() {
@@ -139,11 +150,15 @@ function swapCards(card1ID: number, card2ID: number) {
                 :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" />
         </div>
         <div class="controls">
-            <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4">Arvaa</button>
+            <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">Arvaa</button>
         </div>
+
+        <Lives :lives />
     </div>
+
     <Toast ref="toast" />
     <PuzzleMakerConfirm ref="puzzle-maker-confirm" />
+    <LostGameModal ref="lost-game-modal" />
 </template>
 
 <style scoped>
@@ -155,7 +170,7 @@ function swapCards(card1ID: number, card2ID: number) {
 
 .app {
     display: grid;
-    grid-template-rows: 5fr 1fr;
+    grid-template-rows: 5fr 1fr 0.6fr;
     grid-template-columns: 100%;
     height: 100vh;
     width: 100%;

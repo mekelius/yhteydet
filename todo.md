@@ -1,5 +1,4 @@
 - json validation
-- navigating back to puzzlemaker
-- lives
+- option to show solution on fail
 - deployment
 - save to localstorage
