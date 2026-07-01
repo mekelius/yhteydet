@@ -4,9 +4,11 @@ import { wrapGrid } from 'animate-css-grid';
 import Card from './Card.vue';
 import Toast from './Toast.vue';
 import RowHeader from './RowHeader.vue';
+import PuzzleMakerConfirm from './PuzzleMakerConfirm.vue';
 
 const toast = useTemplateRef('toast')
 const cardGrid = useTemplateRef('card-grid')
+const puzzleMakerConfirm = useTemplateRef('puzzle-maker-confirm')
 
 onMounted(() => {
     wrapGrid(cardGrid.value!, { easing: 'backOut', stagger: 10, duration: 400 })
@@ -129,6 +131,7 @@ function swapCards(card1ID: number, card2ID: number) {
 
 <template>
     <div class="app">
+        <button @click="puzzleMakerConfirm!.show()" class="puzzle-maker-button">Luo uusi pulma</button>
         <div ref="card-grid" class="card-grid">
             <RowHeader v-for="category, row in solvedRows" :category :style="{ gridRow: row + 1 }" />
 
@@ -140,9 +143,16 @@ function swapCards(card1ID: number, card2ID: number) {
         </div>
     </div>
     <Toast ref="toast" />
+    <PuzzleMakerConfirm ref="puzzle-maker-confirm" />
 </template>
 
 <style scoped>
+.puzzle-maker-button {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+}
+
 .app {
     display: grid;
     grid-template-rows: 5fr 1fr;

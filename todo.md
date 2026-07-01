@@ -2,3 +2,4 @@
 - navigating back to puzzlemaker
 - lives
 - deployment
+- save to localstorage
