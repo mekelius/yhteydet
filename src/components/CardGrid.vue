@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, useTemplateRef } from 'vue';
+import { computed, onMounted, reactive, useTemplateRef } from 'vue';
 import { wrapGrid } from 'animate-css-grid';
 import Card from './Card.vue';
+import Toast from './Toast.vue';
 
 const puzzle = [
     {
@@ -67,8 +68,10 @@ function correctGuess(category: string) {
     })
 }
 
+const toast = useTemplateRef('toast')
+
 function declareFail() {
-    window.alert("VÄÄRIN MENI")
+    toast.value!.showMessage('Väärin meni')
 }
 
 function makeGuess() {
@@ -114,6 +117,7 @@ onMounted(() => {
             <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4">Arvaa</button>
         </div>
     </div>
+    <Toast ref="toast" />
 </template>
 
 <style scoped>

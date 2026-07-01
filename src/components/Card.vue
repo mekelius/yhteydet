@@ -19,6 +19,7 @@ button {
     border-radius: 10px;
     transition-property: grid-row, grid-col;
     transition-duration: 2s;
+    margin: 1vw;
 }
 
 button.selected {
