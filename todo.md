@@ -1,4 +1,3 @@
-- input
 - sharing
 - lives
 - deployment

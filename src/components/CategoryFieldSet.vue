@@ -12,8 +12,8 @@ const card4 = defineModel('card4')
 <template>
     <fieldset>
         <div>
-            <input class="title" v-model="title" type="text">
-            <select v-model="color" :class="[`color${Number(color) + 1}`]">
+            <input required class="title" v-model="title" type="text">
+            <select required v-model="color" :class="[`color${Number(color) + 1}`]">
                 <option value="0" class="color1">Keltainen</option>
                 <option value="1" class="color2">Vihreä</option>
                 <option value="2" class="color3">Sininen</option>
@@ -22,10 +22,10 @@ const card4 = defineModel('card4')
         </div>
 
         <div class="cards">
-            <input v-model="card1" type="text">
-            <input v-model="card2" type="text">
-            <input v-model="card3" type="text">
-            <input v-model="card4" type="text">
+            <input required v-model="card1" type="text">
+            <input required v-model="card2" type="text">
+            <input required v-model="card3" type="text">
+            <input required v-model="card4" type="text">
         </div>
     </fieldset>
 </template>
