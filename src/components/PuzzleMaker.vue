@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, useTemplateRef } from 'vue';
 import CategoryFieldSet from './CategoryFieldSet.vue';
+import NewLinkModal from './NewLinkModal.vue';
+
+const newLinkModal = useTemplateRef('newLinkModal')
 
 const categories = reactive(Array(4).fill(null).map((_, index) => ({
     title: `Kategoria ${index + 1}`,
@@ -14,7 +17,14 @@ function swapColors(categoryID: number, newColor: string) {
 }
 
 function makeLink() {
+    const preparedCategories = [...categories]
+        .sort(({color: lcolor}, {color: rcolor}) => Number(lcolor) - Number(rcolor))
+        .map(({title, cards}) => ({title, cards}))
 
+    const queryParam = btoa(JSON.stringify(preparedCategories))
+    const link = `${window.location.href.split('?')[0].slice(0,-1)}?puzzle=${queryParam}`
+
+    newLinkModal!.value!.show(link)
 }
 </script>
 
@@ -41,6 +51,8 @@ function makeLink() {
 
             <button>Valmis</button>
         </form>
+
+        <NewLinkModal ref="newLinkModal"/>
     </div>
 </template>
 
