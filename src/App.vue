@@ -5,3 +5,9 @@ import CardGrid from './components/CardGrid.vue'
 <template>
   <CardGrid />
 </template>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+</style>

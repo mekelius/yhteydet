@@ -50,21 +50,21 @@ function selectOption(id: number) {
     card.selected = true
 }
 
-const nextRow = ref(1)
+const solvedRows = reactive<string[]>([])
 
 function correctGuess(category: string) {
+    solvedRows.push(category)
+
     const solved = cards.filter((card) => card.category === category)
     solved.forEach(card => { card.solved = true; card.selected = false })
 
     solved.forEach((card, index) => {
-        if (card.row === nextRow.value && card.col === index + 1)
+        if (card.row === solvedRows.length && card.col === index + 1)
             return
 
-        const swappee = cards.find(({row, col}) => row === nextRow.value && col === index + 1)!
+        const swappee = cards.find(({ row, col }) => row === solvedRows.length && col === index + 1)!
         swapCards(card.id, swappee.id)
     })
-
-    nextRow.value++;
 }
 
 function declareFail() {
@@ -80,13 +80,13 @@ function makeGuess() {
     correctGuess(selected[0].category)
 }
 
-function swapCards(card1ID: number, card2ID:number) {
+function swapCards(card1ID: number, card2ID: number) {
     const card1 = cards.find((card) => card.id === card1ID)!
     const card2 = cards.find((card) => card.id === card2ID)!
 
     const row1 = card1.row
     const col1 = card1.col
-    
+
     card1.row = card2.row
     card1.col = card2.col
     card2.row = row1
@@ -96,7 +96,7 @@ function swapCards(card1ID: number, card2ID:number) {
 const cardGrid = useTemplateRef('card-grid')
 
 onMounted(() => {
-    wrapGrid(cardGrid.value, {easing: 'backOut', stagger: 10, duration: 400})
+    wrapGrid(cardGrid.value!, { easing: 'backOut', stagger: 10, duration: 400 })
 })
 
 </script>
@@ -104,8 +104,11 @@ onMounted(() => {
 <template>
     <div class="app">
         <div ref="card-grid" class="card-grid">
+            <div v-for="category, row in solvedRows" class="row-header" :style="{ gridRow: row + 1 }">
+                <h2>{{ category }}</h2>
+            </div>
             <Card v-for="card in cards" :card @click="() => selectOption(card.id)"
-                :style="{ gridRow: card.row, gridCol: card.col }" />
+                :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" />
         </div>
         <div class="controls">
             <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4">Arvaa</button>
@@ -119,22 +122,36 @@ onMounted(() => {
     grid-template-rows: 5fr 1fr;
     grid-template-columns: 100%;
     height: 100vh;
+    width: 100%;
+    padding-top: 5vh;
 }
 
 .card-grid {
-    /* max-width: 100%;
-    min-width: fit-content; */
-
-    /* max-height: 80%; */
-    /* min-height: fit-content; */
-
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0px 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 20px;
+    /* gap: 20px; */
+    width: 100%;
+}
+
+.row-header {
+    position: relative;
+    grid-column: 3;
+    z-index: 2;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 16px;
+
+    h2 {
+        position: absolute;
+    }
 }
 
 .controls {
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -143,6 +160,7 @@ onMounted(() => {
     .guess {
         flex-grow: 2;
         padding: 20px;
+        border-radius: 10px;
     }
 }
 </style>
