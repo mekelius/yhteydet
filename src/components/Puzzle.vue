@@ -156,7 +156,6 @@ function swapCards(card1ID: number, card2ID: number) {
     display: grid;
     grid-template-columns: 1fr 1fr 0px 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    /* gap: 20px; */
     width: 100%;
 }
 

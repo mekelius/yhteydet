@@ -1,5 +1,4 @@
-- colors
 - input
-- lives
 - sharing
+- lives
 - deployment

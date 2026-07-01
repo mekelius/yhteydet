@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import Puzzle from './components/Puzzle.vue';
 import PuzzleMaker from './components/PuzzleMaker.vue';
 
-const currentView = ref<'puzzle' | 'puzzle-maker'>('puzzle')
+const currentView = ref<'puzzle' | 'puzzle-maker'>('puzzle-maker')
 
 const puzzle = [
     {
@@ -24,7 +24,6 @@ const puzzle = [
         cards: ['Miu', 'Mau', 'Jonna', 'Nasti'],
     },
 ]
-
 </script>
 
 <template>

@@ -1,13 +1,11 @@
 <script setup lang="ts">
 const { category } = defineProps(['category'])
-
 </script>
 
 <template>
     <div>
         <h2>{{ category }}</h2>
     </div>
-
 </template>
 
 <style scoped>
