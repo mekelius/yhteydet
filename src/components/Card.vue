@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const {card} = defineProps(['card'])
-const option = ref(card.option)
+const { card } = defineProps(['card'])
+const cardText = ref(card.cardText)
 
 </script>
 
 <template>
-    <button :class="{selected: card.selected, solved: card.solved}" :disabled="card.solved"> 
-        {{ option }}
+    <button :class="{ selected: card.selected, solved: card.solved }" :disabled="card.solved">
+        {{ cardText }}
     </button>
 </template>
 

@@ -8,36 +8,40 @@ import RowHeader from './RowHeader.vue';
 const puzzle = [
     {
         category: 'Elukat',
-        options: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
+        cards: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
     },
     {
         category: 'Juomat',
-        options: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
+        cards: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
     },
     {
         category: 'Ulokkeet',
-        options: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
+        cards: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
     },
     {
         category: 'Söpöt',
-        options: ['Miu', 'Mau', 'Jonna', 'Nasti'],
+        cards: ['Miu', 'Mau', 'Jonna', 'Nasti'],
     },
 ]
 
-const options = []
-let id = 0;
+function initCards(puzzle: { category: string, cards: string[] }[]) {
+    const cards = []
+    let id = 0;
 
-for (const category of puzzle) {
-    for (const option of category.options) {
-        options.push({ id, category: category.category, option, selected: false, solved: false })
-        id++;
+    for (const category of puzzle) {
+        for (const cardText of category.cards) {
+            cards.push({ id, category: category.category, card: cardText, selected: false, solved: false })
+            id++;
+        }
     }
+
+    const randomized = cards.map((card) => ({ pos: Math.random(), card }))
+    randomized.sort(({ pos: pos1 }, { pos: pos2 }) => pos2 - pos1)
+
+    return randomized.map(({ card }, index) => ({ ...card, row: Math.floor(index / 4) + 1, col: index % 4 + 1 }))
 }
 
-const randomized = options.map((option) => ({ pos: Math.random(), option }))
-randomized.sort(({ pos: pos1 }, { pos: pos2 }) => pos2 - pos1)
-
-const cards = reactive(randomized.map(({ option }, index) => ({ ...option, row: Math.floor(index / 4) + 1, col: index % 4 + 1 })));
+const cards = reactive(initCards(puzzle));
 
 const numberOfSelected = computed(() => cards.filter((v) => v.selected).length);
 

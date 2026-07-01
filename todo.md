@@ -1,0 +1,6 @@
+- one away
+- colors
+- input
+- lives
+- sharing
+- deployment
