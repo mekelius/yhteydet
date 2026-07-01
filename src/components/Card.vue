@@ -9,8 +9,6 @@ const option = ref(card.option)
 <template>
     <button :class="{selected: card.selected, solved: card.solved}" :disabled="card.solved"> 
         {{ option }}
-        {{ card.row }}
-        {{ card.col }}
     </button>
 </template>
 

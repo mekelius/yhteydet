@@ -7,20 +7,20 @@ import RowHeader from './RowHeader.vue';
 
 const puzzle = [
     {
-        category: 'category1',
-        options: ['1a', '1b', '1c', '1d'],
+        category: 'Elukat',
+        options: ['Ankka', 'Lehmä', 'Valas', 'Jänes'],
     },
     {
-        category: 'category2',
-        options: ['2a', '2b', '2c', '2d'],
+        category: 'Juomat',
+        options: ['Vesi', 'Maito', 'Kalja', 'Kefiiri'],
     },
     {
-        category: 'category3',
-        options: ['3a', '3b', '3c', '3d'],
+        category: 'Ulokkeet',
+        options: ['Sarvi', 'Niemi', 'Jorma', 'Tatti'],
     },
     {
-        category: 'category4',
-        options: ['4a', '4b', '4c', '4d'],
+        category: 'Söpöt',
+        options: ['Miu', 'Mau', 'Jonna', 'Nasti'],
     },
 ]
 
