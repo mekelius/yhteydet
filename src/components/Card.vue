@@ -7,19 +7,29 @@ const cardText = ref(card.cardText)
 </script>
 
 <template>
-    <button :class="[card.selected ? 'selected' : '', card.solved ? `color${card.color + 1}` : '']" :disabled="card.solved">
-        {{ cardText }}
-    </button>
+    <div class="wrapper">
+        <button :class="[card.selected ? 'selected' : '', card.solved ? `color${card.color + 1}` : '']" :disabled="card.solved">
+            {{ cardText }}
+        </button>
+    </div>
 </template>
 
 <style scoped>
-button {
-    border-radius: 10px;
+.wrapper {
     transition-property: grid-row, grid-col;
     transition-duration: 2s;
+    display: grid;
     margin: 1vw;
+}
+
+button {
+    border-radius: 10px;
     font-weight: 700;
     font-size: large;
+    border: none;
+
+    transition-property: background-color;
+    transition-duration: 0.15s;
     
     @media screen and (max-width: 720px) {
         font-size: medium;
