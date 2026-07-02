@@ -16,13 +16,24 @@ function swapColors(categoryID: number, newColor: string) {
     categories[categoryID].color = newColor
 }
 
-function makeLink() {
+// function makeLinkV1() {
+//     const preparedCategories = [...categories]
+//         .sort(({color: lcolor}, {color: rcolor}) => Number(lcolor) - Number(rcolor))
+//         .map(({title, cards}) => ({title, cards}))
+
+//     const queryParam = btoa(JSON.stringify(preparedCategories))
+//     const link = `${window.location.href.split('?')[0]}?puzzle=${queryParam}`
+
+//     newLinkModal!.value!.show(link)
+// }
+
+function makeLinkV2() {
     const preparedCategories = [...categories]
         .sort(({color: lcolor}, {color: rcolor}) => Number(lcolor) - Number(rcolor))
-        .map(({title, cards}) => ({title, cards}))
+        .map(({title, cards}) => ([title, cards]))
 
     const queryParam = btoa(JSON.stringify(preparedCategories))
-    const link = `${window.location.href.split('?')[0]}?puzzle=${queryParam}`
+    const link = `${window.location.href.split('?')[0]}?puzzlev2=${queryParam}`
 
     newLinkModal!.value!.show(link)
 }
@@ -31,7 +42,7 @@ function makeLink() {
 <template>
     <div>
         <h1>Luo uusi pulma</h1>
-        <form @submit.prevent="makeLink()">
+        <form @submit.prevent="makeLinkV2()">
             <CategoryFieldSet v-model:title="categories[0].title" :color="categories[0].color"
                 @update:color="(color) => swapColors(0, color)" v-model:card1="categories[0].cards[0]"
                 v-model:card2="categories[0].cards[1]" v-model:card3="categories[0].cards[2]"

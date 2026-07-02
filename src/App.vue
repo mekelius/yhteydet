@@ -8,7 +8,7 @@ const ALLOWED_VERSION_STRINGS = ['puzzle', 'puzzlev2']
 
 const queryParam = window.location.search.split('?')?.[1]
 
-const versionString = queryParam.split('=')?.[0]
+const versionString = queryParam?.split('=')?.[0]
 
 if (queryParam && !versionString) {
     window.alert("Linkin tulkitseminen epäonnistui")
@@ -20,7 +20,7 @@ if (queryParam && !(ALLOWED_VERSION_STRINGS.find(s => s === versionString))) {
     throw `Unknown version string ${versionString}`
 }
 
-const puzzleParam = queryParam.slice(versionString.length + 1)
+const puzzleParam = queryParam?.slice(versionString.length + 1)
 
 function decodeAndValidateV1(puzzleParam: string) {
     try {
@@ -37,7 +37,7 @@ function decodeAndValidateV1(puzzleParam: string) {
 
 function decodeAndValidateV2(puzzleParam: string) {
     try {
-        const puzzle = JSON.parse(atob(puzzleParam))
+        const puzzle = JSON.parse(atob(puzzleParam)).map(([title, cards]: [string, string[]]) => ({ title, cards }))
 
         // validation here
 
