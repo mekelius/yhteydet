@@ -199,9 +199,26 @@ function swapCards(card1ID: number, card2ID: number) {
         flex-grow: 2;
         padding: 20px;
         border-radius: 10px;
+        border: none;
+        cursor: pointer;
 
         transition-property: background-color color;
         transition-duration: 0.1s;
+    }
+
+    .guess:hover:not([disabled]) {
+        transition-duration: 0.06s;
+        background-color: #888;
+    }
+
+    .guess:active:not([disabled]) {
+        transition-duration: 0.06s;
+        background-color: #a2a2a2;
+    }
+
+    .guess[disabled] {
+        border: none;
+        cursor: auto;
     }
 }
 </style>

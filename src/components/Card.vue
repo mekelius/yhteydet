@@ -26,7 +26,6 @@ const cardText = ref(card.cardText)
     transition-duration: 2s;
     display: grid;
     margin: 1vw;
-
 }
 
 button {
