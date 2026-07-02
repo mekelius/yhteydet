@@ -67,7 +67,7 @@ button {
   background-color: var(--button-bg);
   color: var(--button-text);
 
-  transition-property: background-color;
+  transition-property: background-color color;
   transition-duration: 0.1s;
 
   border-radius: 10px;

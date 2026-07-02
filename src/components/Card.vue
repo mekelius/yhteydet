@@ -37,7 +37,7 @@ button {
     font-size: 20px;
     border: none;
 
-    transition-property: background-color;
+    transition-property: background-color color;
     transition-duration: 0.2s !important;
 
     @media screen and (max-width: 720px) {
