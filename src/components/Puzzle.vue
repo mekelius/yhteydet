@@ -204,15 +204,11 @@ function swapCards(card1ID: number, card2ID: number) {
     .guess:hover:not([disabled]) {
         transition-property: background-color color;
         transition-duration: 0.06s;
-
-        background-color: #888;
     }
 
     .guess:active:not([disabled]) {
         transition-property: background-color color;
         transition-duration: 0.06s;
-
-        background-color: #a2a2a2;
     }
 }
 </style>

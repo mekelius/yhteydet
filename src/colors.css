@@ -1,19 +1,50 @@
+:root {
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #16171d;
+  --border: #2e303a;
+
+  --dialog-bg: var(--bg);
+  --dialog-text: #fff;
+
+  --life-indicator-bg: #777;
+
+  --button-text: #fff;
+  --button-text-disabled: rgba(255, 255, 255, 0.3);
+  --button-text-hover: var(--button-text);
+  --button-text-active: var(--button-text);
+
+  --button-bg: rgb(107, 107, 107);
+  --button-bg-disabled: rgba(19, 1, 1, 0.3);
+  --button-bg-hover: #888;
+  --button-bg-active: #a2a2a2;
+}
+
 .color1 {
-    background-color: #ffff00;
-    color: black;
+    background-color: oklch(87.9% 0.169 91.605) !important;
+    background-color: oklch(79.5% 0.184 86.047) !important;
+    background-color: oklch(82.8% 0.189 84.429) !important;
+    color: black !important;
 }
 
 .color2 {
-    background-color: #00ff00;
-    color: black;
+    background-color: oklch(89.7% 0.196 126.665) !important;
+    color: black !important;
 }
 
 .color3 {
-    background-color: #0000ff;
-    color: black;
+    /* background-color: oklch(62.3% 0.214 259.815); */
+    background-color: oklch(74.6% 0.16 232.661) !important;
+    /* background-color: oklch(62.3% 0.214 259.815); */
+    /* background-color: oklch(62.3% 0.214 259.815); */
+    /* background-color: oklch(62.3% 0.214 259.815); */
+    /* background-color: oklch(62.3% 0.214 259.815); */
+    /* background-color: oklch(62.3% 0.214 259.815); */
+
+    color: black !important;
 }
 
 .color4 {
-    background-color: #7f00ff;
-    color: black;
+    background-color: oklch(74% 0.238 322.16) !important;
+    color: black !important;
 }

@@ -16,7 +16,7 @@ const {lives} = defineProps<{lives:number}>()
 }
 
 .life {
-    background-color: #777;
+    background-color: var(--life-indicator-bg);
     width: 32px;
     height: 32px;
     border-radius: 100%;

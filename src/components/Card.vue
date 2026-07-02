@@ -53,12 +53,20 @@ button {
     }
 }
 
-button[disabled]:not(.solved) {
-    background-color: #606060;
+button[disabled] {
     color: #c8c8c8;
+    background-color: #606060;
+}
+
+button:hover {
+    background-color: var(--button-bg);
+}
+
+button:active {
+    background-color: var(--button-bg);
 }
 
 button.selected {
-    background-color: burlywood;
+    background-color: burlywood !important;
 }
 </style>
