@@ -1,8 +1,17 @@
-- json validation
+## priotity
+- category box redesign and fix
+- multi touch
+
+## backlog
 - copy link to clipboard button
-- option to show solution on fail
-- deployment
-- save to localstorage
-- Category box redesign and fix
 - congratulations on win
-- shorten the link by using arrays instead of objects
+- save to localstorage
+- json validation
+- transition to buttons
+
+## ideas
+- hint system
+
+## maybe?
+- option to show solution on fail?
+- all caps?
