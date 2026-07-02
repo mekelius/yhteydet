@@ -51,7 +51,8 @@ button {
 }
 
 button[disabled]:not(.solved) {
-    background-color: #555555;
+    background-color: #606060;
+    color: #c8c8c8;
 }
 
 button.selected {

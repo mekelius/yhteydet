@@ -137,12 +137,9 @@ function swapCards(card1ID: number, card2ID: number) {
         <div ref="card-grid" class="card-grid">
             <RowHeader v-for="category, row in solvedRows" :category :style="{ gridRow: row + 1 }" />
 
-            <Card v-for="card in cards" 
-                :card 
-                :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" 
-                :disabled="numberOfSelected >= 4 && !card.selected"
-                @select-card="() => selectOption(card.id)"
-                />
+            <Card v-for="card in cards" :card
+                :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }"
+                :disabled="numberOfSelected >= 4 && !card.selected" @select-card="() => selectOption(card.id)" />
         </div>
         <div class="controls">
             <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">Arvaa</button>
@@ -161,6 +158,7 @@ function swapCards(card1ID: number, card2ID: number) {
     position: fixed;
     top: 16px;
     right: 16px;
+    padding: 8px 16px;
 }
 
 .app {
@@ -169,7 +167,7 @@ function swapCards(card1ID: number, card2ID: number) {
     grid-template-columns: 100%;
     height: 100dvh;
     width: 100%;
-    padding-top: 5dvh;
+    padding-top: 64px;
 
     padding-left: 5vw;
     padding-right: 5vw;
@@ -201,19 +199,20 @@ function swapCards(card1ID: number, card2ID: number) {
         border-radius: 10px;
         border: none;
 
-        transition-property: background-color color;
-        transition-duration: 0.1s;
     }
 
     .guess:hover:not([disabled]) {
+        transition-property: background-color color;
         transition-duration: 0.06s;
+
         background-color: #888;
     }
 
     .guess:active:not([disabled]) {
+        transition-property: background-color color;
         transition-duration: 0.06s;
+
         background-color: #a2a2a2;
     }
-
 }
 </style>

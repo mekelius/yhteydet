@@ -82,11 +82,20 @@ p {
 }
 
 button {
-  user-select: none;
-  cursor: pointer;
-
+  touch-action: manipulation;
+  
   border-radius: 10px;
   border: none;
+
+  /* Weird selection flashes on mobile without this */
+  @media (hover: hover) {
+    cursor: pointer;
+  }
+  
+  /* Double check it */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; 
+  -webkit-user-select: none; 
 }
 
 button[disabled] {
