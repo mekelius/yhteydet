@@ -67,6 +67,9 @@ button {
   background-color: var(--button-bg);
   color: var(--button-text);
 
+  transition-property: background-color;
+  transition-duration: 0.1s;
+
   border-radius: 10px;
   border: none;
 
@@ -78,7 +81,7 @@ button {
   /* Double check it */
   user-select: none;
   -webkit-tap-highlight-color: transparent; 
-  -webkit-user-select: none; 
+  -webkit-user-select: none;
 }
 
 button[disabled] {
