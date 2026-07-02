@@ -1,4 +1,5 @@
 ## priotity
+- landscape mode
 - category box redesign and fix x?
 - multi touch
 - deal with address bar on mobile

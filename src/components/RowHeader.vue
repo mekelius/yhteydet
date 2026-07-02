@@ -22,18 +22,14 @@ div {
         color: black;
         border: 1px solid black;
         position: absolute;
-        top: 8px;
+        top: 1.75vw;
         border-radius: 10px;
         word-wrap: normal;
         min-width: max-content;
 
-        padding: 16px;
+        padding: 8px;
         font-weight: 700;
-
-        @media screen and (max-width: 720px) {
-            padding: 8px;
-            font-size: medium;
-        }
+        font-size: medium;
 
         @media screen and (max-width: 480px) {
             font-size: small;
