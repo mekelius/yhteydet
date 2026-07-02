@@ -1,11 +1,11 @@
 ## priotity
-- multi touch
-- repick colors
+- multi touch x
+- repick colors x?
 - landscape mode
 - siirrä se toast
+- move new puzzle button
 
 ## backlog
-- move new puzzle button
 - copy link to clipboard button
 - congratulations on win
 - save to localstorage
