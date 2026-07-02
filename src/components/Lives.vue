@@ -23,6 +23,15 @@ const {lives} = defineProps<{lives:number}>()
 }
 
 .gone {
-    visibility: hidden;
+    animation: fadeout 0.1s linear forwards;
+}
+
+@keyframes fadeout{
+  0%{
+    opacity:1;
+  }
+  100%{
+    opacity:0;
+  }
 }
 </style>

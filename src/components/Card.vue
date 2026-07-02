@@ -29,7 +29,7 @@ button {
     border: none;
 
     transition-property: background-color;
-    transition-duration: 0.15s;
+    transition-duration: 0.1s;
     
     @media screen and (max-width: 720px) {
         font-size: medium;

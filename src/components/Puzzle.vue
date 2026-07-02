@@ -187,6 +187,9 @@ function swapCards(card1ID: number, card2ID: number) {
         flex-grow: 2;
         padding: 20px;
         border-radius: 10px;
+
+        transition-property: background-color color;
+        transition-duration: 0.1s;
     }
 }
 </style>
