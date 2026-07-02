@@ -16,7 +16,7 @@ const lostGameModal = useTemplateRef('lost-game-modal')
 const lives = ref(4)
 
 onMounted(() => {
-    wrapGrid(cardGrid.value!, { easing: 'backOut', stagger: 10, duration: 400 })
+    wrapGrid(cardGrid.value!, { easing: 'backInOut', stagger: 10, duration: 300 })
 })
 
 type Card = {
