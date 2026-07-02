@@ -16,15 +16,28 @@ div {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    padding-top: 16px;
 
     h2 {
         background-color: white;
         color: black;
         border: 1px solid black;
         position: absolute;
+        top: 8px;
         border-radius: 10px;
+        word-wrap: normal;
+        min-width: max-content;
+
         padding: 16px;
+        font-weight: 700;
+
+        @media screen and (max-width: 720px) {
+            padding: 8px;
+            font-size: medium;
+        }
+
+        @media screen and (max-width: 480px) {
+            font-size: small;
+        }
     }
 }
 </style>

@@ -1,6 +1,8 @@
 ## priotity
 - category box redesign and fix
 - multi touch
+- deal with address bar on mobile
+- hidasta animaatiota?
 
 ## backlog
 - copy link to clipboard button

@@ -62,6 +62,11 @@ const currentView = ref<'puzzle' | 'puzzle-maker'>(puzzle ? 'puzzle' : 'puzzle-m
 <style>
 @import "./colors.css";
 
+/* 
+    --small: 480px;
+    --medium: 720px; 
+*/
+
 * {
     box-sizing: border-box;
 }
