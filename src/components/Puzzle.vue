@@ -36,23 +36,14 @@ type Puzzle = Category[]
 const { puzzle } = defineProps<{ puzzle: Puzzle }>()
 
 function initCards(puzzle: Puzzle): Card[] {
-    const cards = []
-    let id = 0;
-    let color = 0;
-    for (const category of puzzle) {
-        for (const cardText of category.cards) {
-            cards.push({
-                id,
-                category: category.title,
-                cardText,
-                selected: false,
-                solved: false,
-                color,
-            })
-            id++;
-        }
-        color++;
-    }
+    const cards = puzzle.flatMap(({ title: category, cards }, color) => cards.map((cardText, i) => ({
+        id: color * 4 + i,
+        category,
+        cardText,
+        selected: false,
+        solved: false,
+        color,
+    })))
 
     const randomized = cards.map((card) => ({ pos: Math.random(), card }))
     randomized.sort(({ pos: pos1 }, { pos: pos2 }) => pos2 - pos1)
