@@ -5,3 +5,4 @@
 - save to localstorage
 - Category box redesign and fix
 - congratulations on win
+- shorten the link by using arrays instead of objects

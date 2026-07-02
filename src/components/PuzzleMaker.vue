@@ -22,7 +22,7 @@ function makeLink() {
         .map(({title, cards}) => ({title, cards}))
 
     const queryParam = btoa(JSON.stringify(preparedCategories))
-    const link = `${window.location.href.split('?')[0].slice(0,-1)}?puzzle=${queryParam}`
+    const link = `${window.location.href.split('?')[0]}?puzzle=${queryParam}`
 
     newLinkModal!.value!.show(link)
 }
