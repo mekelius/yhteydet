@@ -8,7 +8,7 @@ function show() {
 }
 
 function gotoPuzzleMaker() {
-    const url = window.location.origin
+    const url = window.location.origin + window.location.pathname
     window.location.assign(url)
 }
 
