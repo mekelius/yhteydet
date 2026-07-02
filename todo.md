@@ -1,18 +1,15 @@
 ## priotity
-- landscape mode
-- category box redesign and fix x?
 - multi touch
-- deal with address bar on mobile x
-- hidasta animaatiota? x?
+- repick colors
+- landscape mode
 - siirrä se toast
-- glow up new puzzle button
 
 ## backlog
+- move new puzzle button
 - copy link to clipboard button
 - congratulations on win
 - save to localstorage
 - json validation
-- transition to buttons x
 
 ## ideas
 - hint system
