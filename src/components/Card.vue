@@ -29,7 +29,6 @@ const cardText = ref(card.cardText)
 }
 
 button {
-    cursor: pointer;
     border-radius: 10px;
     font-weight: 700;
     font-size: large;
@@ -45,10 +44,6 @@ button {
     @media screen and (max-width: 480px) {
         font-size: x-small;
     }
-}
-
-button[disabled] {
-    cursor: auto;
 }
 
 button[disabled]:not(.solved) {

@@ -30,15 +30,26 @@ defineExpose({show})
     display: flex;
     gap: 16px;
     justify-content: center;
+
+    @media screen and (max-width: 480px) {
+        gap: 8px;
+    }
 }
 
 button {
-
     font-weight: 500;
     font-size: medium;
     padding: 16px 24px;
     margin-top: 16px;
-    border-radius: 10px;
-    border: none;
+
+    @media screen and (max-width: 720px) {
+        padding: 16px;
+    }
+
+    @media screen and (max-width: 480px) {
+        gap: 8px;
+        font-size: small;
+        padding: 8px 16px;
+    }
 }
 </style>

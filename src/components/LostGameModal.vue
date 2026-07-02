@@ -24,8 +24,6 @@ button {
     font-size: medium;
     padding: 16px 24px;
     margin-top: 16px;
-    border-radius: 10px;
-    border: none;
     max-width: max-content;
 }
 </style>

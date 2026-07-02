@@ -200,7 +200,6 @@ function swapCards(card1ID: number, card2ID: number) {
         padding: 20px;
         border-radius: 10px;
         border: none;
-        cursor: pointer;
 
         transition-property: background-color color;
         transition-duration: 0.1s;
@@ -216,9 +215,5 @@ function swapCards(card1ID: number, card2ID: number) {
         background-color: #a2a2a2;
     }
 
-    .guess[disabled] {
-        border: none;
-        cursor: auto;
-    }
 }
 </style>
