@@ -71,7 +71,7 @@ function makeLinkV2() {
 button {
     padding: 24px 32px;
     margin: 16px;
-    font-size: large;
+    font-size: 20px;
     font-weight: 700;
     border-radius: 10px;
     border: none;

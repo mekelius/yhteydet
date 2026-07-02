@@ -21,7 +21,7 @@ defineExpose({ show })
 <style scoped>
 button {
     font-weight: 500;
-    font-size: medium;
+    font-size: 16px;
     padding: 16px 24px;
     margin-top: 16px;
     max-width: max-content;

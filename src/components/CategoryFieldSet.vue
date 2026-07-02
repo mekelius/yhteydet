@@ -41,7 +41,7 @@ fieldset {
 
 .title {
     font-weight: 700;
-    font-size: medium;
+    font-size: 16px;
     margin: 16px;
     margin-bottom: 32px;
 }

@@ -46,7 +46,7 @@ dialog {
 }
 
 .instructions {
-    font-size: large;
+    font-size: 20px;
 }
 
 a {
@@ -56,7 +56,7 @@ a {
 
 button {
     font-weight: 500;
-    font-size: medium;
+    font-size: 16px;
     padding: 16px 24px;
     margin-top: 16px;
     border-radius: 10px;

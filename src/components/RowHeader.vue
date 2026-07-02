@@ -29,10 +29,10 @@ div {
 
         padding: 8px;
         font-weight: 700;
-        font-size: medium;
+        font-size: 16px;
 
         @media screen and (max-width: 480px) {
-            font-size: small;
+            font-size: 13px;
         }
     }
 }

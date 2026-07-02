@@ -31,18 +31,22 @@ const cardText = ref(card.cardText)
 button {
     border-radius: 10px;
     font-weight: 700;
-    font-size: large;
+    font-size: 20px;
     border: none;
 
     transition-property: background-color;
     transition-duration: 0.1s;
 
     @media screen and (max-width: 720px) {
-        font-size: medium;
+        font-size: 16px;
     }
 
     @media screen and (max-width: 480px) {
-        font-size: x-small;
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: 320px) {
+        font-size: 10px;
     }
 }
 

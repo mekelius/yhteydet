@@ -38,7 +38,7 @@ defineExpose({show})
 
 button {
     font-weight: 500;
-    font-size: medium;
+    font-size: 16px;
     padding: 16px 24px;
     margin-top: 16px;
 
@@ -48,7 +48,6 @@ button {
 
     @media screen and (max-width: 480px) {
         gap: 8px;
-        font-size: small;
         padding: 8px 16px;
     }
 }
