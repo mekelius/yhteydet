@@ -2,9 +2,10 @@
 - landscape mode
 - category box redesign and fix x?
 - multi touch
-- deal with address bar on mobile
+- deal with address bar on mobile x
 - hidasta animaatiota? x?
 - siirrä se toast
+- glow up new puzzle button
 
 ## backlog
 - copy link to clipboard button

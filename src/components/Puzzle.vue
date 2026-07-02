@@ -137,8 +137,12 @@ function swapCards(card1ID: number, card2ID: number) {
         <div ref="card-grid" class="card-grid">
             <RowHeader v-for="category, row in solvedRows" :category :style="{ gridRow: row + 1 }" />
 
-            <Card v-for="card in cards" :card @click="() => selectOption(card.id)"
-                :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" />
+            <Card v-for="card in cards" 
+                :card 
+                :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }" 
+                :disabled="numberOfSelected >= 4 && !card.selected"
+                @select-card="() => selectOption(card.id)"
+                />
         </div>
         <div class="controls">
             <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">Arvaa</button>
