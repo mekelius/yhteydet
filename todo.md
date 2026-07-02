@@ -2,3 +2,4 @@
 - option to show solution on fail
 - deployment
 - save to localstorage
+- Category box redesign
