@@ -70,6 +70,7 @@ function selectOption(id: number) {
 }
 
 const solvedRows = reactive<{category: string, color: number}[]>([])
+const puzzleSolved = computed(() => solvedRows.length >= 4)
 
 function correctGuess(category: string, color: number) {
     solvedRows.push({category, color})
@@ -142,7 +143,9 @@ function swapCards(card1ID: number, card2ID: number) {
                 :disabled="numberOfSelected >= 4 && !card.selected" @select-card="() => selectOption(card.id)" />
         </div>
         <div class="controls">
-            <button class="guess" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">Arvaa</button>
+            <button class="guess" :class="{puzzleSolved}" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">
+                {{ !puzzleSolved ? 'Tarkista' : 'OH YEAH!!'}}
+            </button>
         </div>
 
         <Lives :lives />
@@ -208,6 +211,12 @@ function swapCards(card1ID: number, card2ID: number) {
 
     .guess:active:not([disabled]) {
         transition-duration: 0.1s !important;
+    }
+
+    .guess.puzzleSolved {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
     }
 }
 </style>
