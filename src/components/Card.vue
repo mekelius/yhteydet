@@ -14,7 +14,7 @@ function onClick(e: UIEvent) {
 
 <template>
     <div class="wrapper">
-        <button @touchstart.prevent="emit('selectCard')" @mousedown.left="emit('selectCard')" @click="onClick" :class="[
+        <button @touchstart.prevent="!(card.solved || disabled) && emit('selectCard')" @mousedown.left="emit('selectCard')" @click="onClick" :class="[
             card.selected ? 'selected' : '',
             card.solved ? `color${card.color + 1} solved` : ''
         ]" :disabled="card.solved || disabled">

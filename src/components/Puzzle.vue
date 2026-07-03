@@ -58,13 +58,17 @@ function initCards(puzzle: Puzzle): Card[] {
 const cards = reactive(initCards(puzzle));
 const numberOfSelected = computed(() => cards.filter((v) => v.selected).length);
 
-function selectOption(id: number) {
+function selectCard(id: number) {
     const card = cards.find((card) => card.id === id)!;
+
+    if (card.solved)
+        return
+
     if (card.selected)
-        return card.selected = false;
+        return card.selected = false
 
     if (numberOfSelected.value >= 4)
-        return;
+        return
 
     card.selected = true
 }
@@ -140,7 +144,7 @@ function swapCards(card1ID: number, card2ID: number) {
 
             <Card v-for="card in cards" :card
                 :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }"
-                :disabled="numberOfSelected >= 4 && !card.selected" @select-card="() => selectOption(card.id)" />
+                :disabled="numberOfSelected >= 4 && !card.selected" @select-card="() => selectCard(card.id)" />
         </div>
         <div class="controls">
             <button class="guess" :class="{puzzleSolved}" @click="makeGuess" :disabled="numberOfSelected != 4 || lives <= 0">
