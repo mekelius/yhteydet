@@ -35,7 +35,7 @@ button {
     border-radius: 10px;
     font-weight: 700;
     font-size: 20px;
-    border: none;
+    background-color: var(--card-button-bg);
 
     transition-property: background-color color;
     transition-duration: 0.2s !important;
@@ -55,18 +55,18 @@ button {
 
 button[disabled] {
     color: #c8c8c8;
-    background-color: #606060;
+    background-color: var(--card-button-bg-disabled);
 }
 
-button:hover {
-    background-color: var(--button-bg);
+button:hover:not([disabled]) {
+    background-color: var(--card-button-bg-hover);
 }
 
-button:active {
-    background-color: var(--button-bg);
+button:active:not([disabled]) {
+    background-color: var(--card-button-bg-active);
 }
 
 button.selected {
-    background-color: burlywood !important;
+    background-color: var(--card-button-bg-selected) !important;
 }
 </style>

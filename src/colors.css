@@ -7,6 +7,8 @@
   --dialog-bg: var(--bg);
   --dialog-text: #fff;
 
+  /* --life-indicator-bg: oklch(87.2% 0.01 258.338); */
+  /* --life-indicator-bg: oklch(70.7% 0.022 261.325); */
   --life-indicator-bg: #777;
 
   --button-text: #fff;
@@ -18,6 +20,13 @@
   --button-bg-disabled: rgba(19, 1, 1, 0.3);
   --button-bg-hover: #888;
   --button-bg-active: #a2a2a2;
+
+  --card-button-bg: rgb(107, 107, 107);
+  --card-button-bg-disabled: #606060;
+  --card-button-bg-hover: var(--card-button-bg);
+  --card-button-bg-active: var(--card-button-bg);
+  
+  --card-button-bg-selected: burlywood;
 }
 
 .color1 {
