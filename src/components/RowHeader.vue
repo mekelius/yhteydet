@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { category } = defineProps(['category'])
+const { category, color } = defineProps(['category', 'color'])
 </script>
 
 <template>
     <div>
-        <h2>{{ category }}</h2>
+        <h2 :class="`header${color + 1}`">{{ category }}</h2>
     </div>
 </template>
 
@@ -27,7 +27,7 @@ div {
         word-wrap: normal;
         min-width: max-content;
 
-        padding: 8px;
+        padding: 8px 16px;
         font-weight: 700;
         font-size: 16px;
 

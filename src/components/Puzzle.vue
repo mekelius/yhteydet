@@ -69,10 +69,10 @@ function selectOption(id: number) {
     card.selected = true
 }
 
-const solvedRows = reactive<string[]>([])
+const solvedRows = reactive<{category: string, color: number}[]>([])
 
-function correctGuess(category: string) {
-    solvedRows.push(category)
+function correctGuess(category: string, color: number) {
+    solvedRows.push({category, color})
 
     const solved = cards.filter((card) => card.category === category)
     solved.forEach(card => { card.solved = true; card.selected = false })
@@ -105,7 +105,7 @@ function makeGuess() {
 
     const matchFirst = selected.filter(({ category }) => category === selected[0].category).length;
     if (matchFirst === 4)
-        return correctGuess(selected[0].category)
+        return correctGuess(selected[0].category, selected[0].color)
 
     if (matchFirst === 3)
         return oneAway()
@@ -135,7 +135,7 @@ function swapCards(card1ID: number, card2ID: number) {
     <div class="app">
         <button @click="puzzleMakerConfirm!.show()" class="puzzle-maker-button">Luo uusi pulma</button>
         <div ref="card-grid" class="card-grid">
-            <RowHeader v-for="category, row in solvedRows" :category :style="{ gridRow: row + 1 }" />
+            <RowHeader v-for="{category, color}, row in solvedRows" :category :color :style="{ gridRow: row + 1 }" />
 
             <Card v-for="card in cards" :card
                 :style="{ gridRow: card.row, gridColumn: card.col + (card.col > 2 ? 1 : 0) }"
